@@ -1,0 +1,111 @@
+﻿<UserControl x:Class="Brew3.Views.StatsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid Margin="30">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Отчётность" 
+                   FontSize="28" 
+                   FontWeight="SemiBold" 
+                   Foreground="#616F53" 
+                   Margin="0,0,0,20"/>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" 
+                    HorizontalAlignment="Center" 
+                    Margin="0,0,0,20">
+            <Button Content="Сегодня" 
+                    x:Name="TodayButton"
+                    Click="PeriodButton_Click"
+                    Tag="Today"
+                    Background="#616F53"
+                    Foreground="White"
+                    FontSize="14"
+                    Padding="15,8"
+                    Margin="5,0"
+                    Cursor="Hand"/>
+            <Button Content="Неделя" 
+                    x:Name="WeekButton"
+                    Click="PeriodButton_Click"
+                    Tag="Week"
+                    Background="#908A85"
+                    Foreground="White"
+                    FontSize="14"
+                    Padding="15,8"
+                    Margin="5,0"
+                    Cursor="Hand"/>
+            <Button Content="Месяц" 
+                    x:Name="MonthButton"
+                    Click="PeriodButton_Click"
+                    Tag="Month"
+                    Background="#908A85"
+                    Foreground="White"
+                    FontSize="14"
+                    Padding="15,8"
+                    Margin="5,0"
+                    Cursor="Hand"/>
+            <Button Content="Все время" 
+                    x:Name="AllTimeButton"
+                    Click="PeriodButton_Click"
+                    Tag="AllTime"
+                    Background="#908A85"
+                    Foreground="White"
+                    FontSize="14"
+                    Padding="15,8"
+                    Margin="5,0"
+                    Cursor="Hand"/>
+        </StackPanel>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" Background="#F5F2ED" CornerRadius="8" Padding="20" Margin="0,0,10,0">
+                <StackPanel>
+                    <TextBlock Text="Заказов" FontSize="16" Foreground="#908A85"/>
+                    <TextBlock x:Name="TotalOrdersText" Text="–" FontSize="32" FontWeight="Bold" Foreground="#616F53"/>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="1" Background="#F5F2ED" CornerRadius="8" Padding="20" Margin="10,0,10,0">
+                <StackPanel>
+                    <TextBlock Text="Доход" FontSize="16" Foreground="#908A85"/>
+                    <TextBlock x:Name="TotalRevenueText" Text="–" FontSize="32" FontWeight="Bold" Foreground="#616F53"/>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Column="2" Background="#F5F2ED" CornerRadius="8" Padding="20" Margin="10,0,0,0">
+                <StackPanel>
+                    <TextBlock Text="Популярное" FontSize="16" Foreground="#908A85"/>
+                    <TextBlock x:Name="TopProductText" Text="—" FontSize="24" FontWeight="SemiBold" Foreground="#616F53" TextWrapping="Wrap"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+        <Button Grid.Row="3"
+                x:Name="GenerateReportButton"
+                Content="Получить отчет"
+                Click="GenerateReportButton_Click"
+                Background="#616F53"
+                Foreground="White"
+                FontSize="18"
+                FontWeight="SemiBold"
+                Height="50"
+                Width="200"
+                HorizontalAlignment="Center"
+                Margin="0,30,0,0"
+                BorderThickness="0"
+                Cursor="Hand"/>
+    </Grid>
+</UserControl>

@@ -1,0 +1,146 @@
+<UserControl x:Class="Brew3.Views.CartView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Корзина" 
+                   FontSize="28" 
+                   FontWeight="SemiBold" 
+                   Foreground="#616F53" 
+                   Margin="0,0,0,20"/>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <ItemsControl x:Name="CartItemsList">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="#E0DCCD" 
+                                BorderThickness="1" 
+                                CornerRadius="6" 
+                                Padding="15" 
+                                Margin="0,0,0,15"
+                                Background="White">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="{Binding Product.Name, FallbackValue='Товар'}" 
+                                               FontSize="18" 
+                                               FontWeight="SemiBold"/>
+                                    <TextBlock Text="{Binding Product.Description, FallbackValue=''}" 
+                                               FontSize="14" 
+                                               Foreground="#908A85"
+                                               Margin="0,5,0,0"/>
+                                    <TextBlock FontSize="16" Margin="0,5,0,0">
+                                        <Run Text="Цена: "/>
+                                        <Run Text="{Binding Product.Price, StringFormat={}{0:C}, FallbackValue='0 ₽'}"/>
+                                    </TextBlock>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1" 
+                                            Orientation="Horizontal" 
+                                            VerticalAlignment="Center" 
+                                            Margin="20,0">
+                                    <Button Content="-" 
+                                            Width="30" 
+                                            Height="30" 
+                                            Click="DecreaseQuantity_Click"
+                                            Tag="{Binding}"/>
+                                    <TextBlock Text="{Binding Quantity}" 
+                                               FontSize="18" 
+                                               FontWeight="SemiBold"
+                                               VerticalAlignment="Center"
+                                               Margin="15,0"
+                                               MinWidth="30"
+                                               TextAlignment="Center"/>
+                                    <Button Content="+" 
+                                            Width="30" 
+                                            Height="30" 
+                                            Click="IncreaseQuantity_Click"
+                                            Tag="{Binding}"/>
+                                </StackPanel>
+
+                                <TextBlock Grid.Column="2" 
+                                           FontSize="18" 
+                                           FontWeight="Bold"
+                                           VerticalAlignment="Center"
+                                           Margin="20,0">
+                                    <Run Text="Итого: "/>
+                                    <Run Text="{Binding TotalPrice, StringFormat={}{0:C}, FallbackValue='0 ₽', Mode=OneWay}"/>
+                                </TextBlock>
+
+                                <Button Grid.Column="3" 
+                                        Content="Удалить" 
+                                        Background="#D32F2F" 
+                                        Foreground="White"
+                                        Padding="10,5"
+                                        Margin="20,0,0,0"
+                                        Click="RemoveItem_Click"
+                                        Tag="{Binding}"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <Border Grid.Row="2" 
+                BorderBrush="#616F53" 
+                BorderThickness="2" 
+                CornerRadius="6" 
+                Padding="20" 
+                Margin="0,20,0,0"
+                Background="#F5F5F5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Grid.Column="0" 
+                           FontSize="24" 
+                           FontWeight="Bold" 
+                           Foreground="#616F53"
+                           VerticalAlignment="Center">
+                    <Run Text="Общая сумма: "/>
+                    <Run x:Name="TotalAmountText" Text="0 ₽"/>
+                </TextBlock>
+
+                <Button x:Name="CreateOrderButton"
+                        Grid.Column="1" 
+                        Content="Сформировать заказ" 
+                        Background="#616F53" 
+                        Foreground="White"
+                        FontSize="20" 
+                        FontWeight="SemiBold"
+                        Padding="30,15"
+                        Click="CreateOrder_Click">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Style.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Background" Value="#CCCCCC"/>
+                                    <Setter Property="Foreground" Value="#666666"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>
+

@@ -1,0 +1,110 @@
+﻿<Window x:Class="Brew3.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        
+        Title="BrewLog" Height="800" Width="1280"
+        WindowStartupLocation="CenterScreen"
+        Background="White">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Левая панель: изображение -->
+        <Border Grid.Column="0" 
+                CornerRadius="20" 
+                Margin="20">
+            <Border.Background>
+                <!-- ✅ Ресурс, а не абсолютный путь -->
+                <ImageBrush ImageSource="C:\Users\necsu\source\repos\Brew3\Images\Gradient.png" Stretch="UniformToFill"/>
+            </Border.Background>
+            <TextBlock Text="Precision brewing,&#x0a;powered by data."
+                       Foreground="White"
+                       FontSize="60"
+                       FontWeight="Bold"
+                       TextWrapping="Wrap"
+                       Margin="40,60,40,40"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"/>
+        </Border>
+
+        <!-- Правая панель: форма -->
+        <StackPanel Grid.Column="1" 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Width="300">
+
+            <TextBlock Text="BrewLog" 
+                       FontSize="36" 
+                       HorizontalAlignment="Center" 
+                       Foreground="#6F6B66" 
+                       Margin="0,0,0,15"/>
+
+            <TextBlock Text="Логин" 
+                       FontSize="14" 
+                       Foreground="#6F6B66"
+                       Margin="0,10,0,5"/>
+
+            <TextBox x:Name="LoginBox"
+                     Height="35" 
+                     BorderBrush="#B6B1AA" 
+                     BorderThickness="1" 
+                     Padding="8" 
+                     FontSize="14"/>
+
+            <TextBlock Text="Пароль" 
+                       FontSize="14" 
+                       Foreground="#6F6B66"
+                       Margin="0,15,0,5"/>
+
+            <PasswordBox x:Name="PasswordBox"
+                         Height="35"
+                         BorderBrush="#B6B1AA" 
+                         BorderThickness="1"
+                         Padding="8"
+                         Margin="0,5,0,20"/>
+
+            <!-- Сообщение об ошибке (скрыто по умолчанию) -->
+            <TextBlock x:Name="ErrorMessage"
+                       Text="Неверный логин или пароль"
+                       Foreground="Red"
+                       FontSize="12"
+                       TextAlignment="Center"
+                       Margin="0,0,0,15"
+                       Visibility="Collapsed"/>
+
+            <Button x:Name="LoginButton" 
+                    Content="Войти" 
+                    Background="#8E9F6D" 
+                    Foreground="White" 
+                    Height="40" 
+                    FontSize="16" 
+                    BorderThickness="0" 
+                    Margin="0,10,0,15" 
+                    Cursor="Hand"
+                    Click="LoginButton_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                            CornerRadius="6">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#7A8C5A"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>

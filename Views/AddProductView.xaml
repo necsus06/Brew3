@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="Brew3.Views.AddProductView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="800">
+    <ScrollViewer Padding="30">
+        <StackPanel Width="500">
+            <TextBlock Text="Добавить блюдо" 
+                       FontSize="28" 
+                       FontWeight="SemiBold" 
+                       Foreground="#616F53" 
+                       Margin="0,0,0,30"/>
+
+            <TextBlock Text="Категория" Margin="0,0,0,5"/>
+            <ComboBox x:Name="CategoryBox" SelectedIndex="0" Height="35" FontSize="16" Background="White" BorderBrush="#908A85">
+                <ComboBoxItem Content="Dishes"/>
+                <ComboBoxItem Content="Drinks"/>
+                <ComboBoxItem Content="Desserts"/>
+            </ComboBox>
+
+            <TextBlock Text="Название" Margin="0,15,0,5"/>
+            <TextBox x:Name="NameBox" Height="35" FontSize="16" BorderBrush="#908A85"/>
+
+            <TextBlock Text="Описание" Margin="0,15,0,5"/>
+            <TextBox x:Name="DescriptionBox" Height="80" AcceptsReturn="True" TextWrapping="Wrap" FontSize="16" BorderBrush="#908A85"/>
+
+            <TextBlock Text="Цена (₽)" Margin="0,15,0,5"/>
+            <TextBox x:Name="PriceBox" Height="35" FontSize="16" BorderBrush="#908A85"/>
+
+            <TextBlock Text="Путь к изображению" Margin="0,15,0,5"/>
+            <TextBox x:Name="ImagePathBox" Height="35" FontSize="16" BorderBrush="#908A85" Text=""/>
+
+            <Button Content="Сохранить" 
+                    Click="SaveButton_Click"
+                    Background="#616F53" 
+                    Foreground="White" 
+                    Height="40" 
+                    FontSize="18" 
+                    FontWeight="SemiBold"
+                    Margin="0,30,0,10"
+                    HorizontalAlignment="Stretch"/>
+            
+            <Button Content="Обновить изображения для всех товаров" 
+                    Click="UpdateImagePathsButton_Click"
+                    Background="#908A85" 
+                    Foreground="White" 
+                    Height="35" 
+                    FontSize="14" 
+                    FontWeight="SemiBold"
+                    Margin="0,0,0,0"
+                    HorizontalAlignment="Stretch"/>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>
